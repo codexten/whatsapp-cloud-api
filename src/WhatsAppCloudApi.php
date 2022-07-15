@@ -66,7 +66,11 @@ class WhatsAppCloudApi
 
         $this->app = new WhatsAppCloudApiApp($config['from_phone_number_id'], $config['access_token']);
         $this->timeout = $config['timeout'];
-        $this->client = new Client($config['graph_version'], $config['client_handler']);
+        $this->client = $this->getClient($config);
+    }
+
+    protected function getClient(array $config) {
+        return new Client($config['graph_version'], $config['client_handler']);
     }
 
     /**
